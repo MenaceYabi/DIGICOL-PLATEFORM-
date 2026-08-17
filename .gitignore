@@ -4,5 +4,6 @@ __pycache__/
 *.pyc
 db.sqlite3
 .git/
-staticfiles/
+static/
 media/
+node_modules/
