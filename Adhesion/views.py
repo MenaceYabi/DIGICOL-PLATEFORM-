@@ -65,7 +65,7 @@ def Adhesion(request):
             "Votre compte DigiCol a été créé avec succès. Connectez-vous pour accéder à votre espace."
         )
 
-        return redirect("connexion")
+        return redirect("dashboardmembre")
 
 
     return render(
@@ -112,7 +112,7 @@ def connexion(request):
                 f"Bienvenue {membre.nom_complet} !"
             )
 
-            return redirect("Membre")
+            return redirect("dashboardmembre")
 
         messages.error(
             request,

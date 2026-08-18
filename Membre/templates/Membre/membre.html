@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiCol - Dashboard Backend</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --primary-blue: #0056D2;
+            --dark-blue: #1E3A8A;
+            --light-blue: #EFF6FF;
+        }
+        .bg-blue-primary { background-color: var(--primary-blue); }
+        .bg-blue-dark { background-color: var(--dark-blue); }
+        .bg-blue-light { background-color: var(--light-blue); }
+        .text-blue-primary { color: var(--primary-blue); }
+        .text-blue-dark { color: var(--dark-blue); }
+        .border-blue-primary { border-color: var(--primary-blue); }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans flex text-gray-800">
+
+    <aside class="w-64 bg-blue-dark text-white flex flex-col h-screen fixed shadow-xl z-50">
+        <div class="p-6 border-b border-blue-800 flex items-center gap-3">
+            <div class="w-8 h-8 bg-white rounded flex items-center justify-center font-bold text-blue-dark">iD</div>
+            <h1 class="text-xl font-black">DigiCol Admin</h1>
+        </div>
+        <nav class="flex-1 p-4 space-y-2">
+            <button onclick="showSection('dashboard')" class="nav-btn w-full text-left p-3 rounded hover:bg-blue-primary font-bold flex items-center gap-3 transition">
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i> Dashboard
+            </button>
+            <button onclick="showSection('api-management')" class="nav-btn w-full text-left p-3 rounded hover:bg-blue-primary font-bold flex items-center gap-3 transition">
+                <i data-lucide="database" class="w-5 h-5"></i> Backend Management
+            </button>
+            <button onclick="showSection('data-tables')" class="nav-btn w-full text-left p-3 rounded hover:bg-blue-primary font-bold flex items-center gap-3 transition">
+                <i data-lucide="table" class="w-5 h-5"></i> Database Explorer
+            </button>
+        </nav>
+        <div class="p-4 border-t border-blue-800 text-xs text-blue-200 text-center">
+            Strictement Blanc & Bleu
+        </div>
+    </aside>
+
+    <main class="ml-64 flex-1 p-8 overflow-y-auto h-screen">
+        
+        <header class="flex justify-between items-center mb-8 bg-white p-6 rounded shadow-sm border-l-4 border-blue-primary">
+            <div>
+                <h2 class="text-2xl font-black text-blue-dark">Panneau de Contrôle Backend</h2>
+                <p class="text-sm text-gray-500">Gestion des services, API et base de données</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="px-3 py-1 bg-blue-light text-blue-primary font-bold text-sm rounded">Système Actif</span>
+                <div class="w-10 h-10 bg-blue-primary rounded-full flex items-center justify-center text-white font-bold">
+                    DC
+                </div>
+            </div>
+        </header>
+
+        <section id="dashboard" class="content-section space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded shadow-sm border-t-4 border-blue-primary">
+                    <p class="text-xs text-gray-500 uppercase font-bold mb-1">API Status</p>
+                    <p class="text-2xl font-black text-blue-dark">200 OK</p>
+                    <p class="text-xs text-blue-primary mt-1">Opérationnel à 99.9%</p>
+                </div>
+                <div class="bg-white p-6 rounded shadow-sm border-t-4 border-blue-dark">
+                    <p class="text-xs text-gray-500 uppercase font-bold mb-1">Database Latency</p>
+                    <p class="text-2xl font-black text-blue-dark">18ms</p>
+                    <p class="text-xs text-blue-primary mt-1">Connexion stable</p>
+                </div>
+                <div class="bg-white p-6 rounded shadow-sm border-t-4 border-blue-primary">
+                    <p class="text-xs text-gray-500 uppercase font-bold mb-1">Active Requests</p>
+                    <p class="text-2xl font-black text-blue-dark">128</p>
+                    <p class="text-xs text-blue-primary mt-1">En cours de traitement</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="api-management" class="content-section hidden space-y-6">
+            <div class="bg-white p-6 rounded shadow-sm border-t-4 border-blue-primary">
+                <h3 class="text-xl font-bold text-blue-dark mb-4">Configuration des Endpoints API</h3>
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">API Endpoint URL</label>
+                        <input type="text" class="w-full p-3 border border-gray-300 rounded focus:border-blue-primary outline-none" value="/api/v1/projects/sync">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Méthode HTTP</label>
+                            <select class="w-full p-3 border border-gray-300 rounded focus:border-blue-primary outline-none">
+                                <option>POST</option>
+                                <option>GET</option>
+                                <option>PUT</option>
+                                <option>DELETE</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Timeout (ms)</label>
+                            <input type="number" class="w-full p-3 border border-gray-300 rounded focus:border-blue-primary outline-none" value="5000">
+                        </div>
+                    </div>
+                    <button type="button" class="bg-blue-primary hover:bg-blue-dark text-white px-6 py-3 rounded font-bold transition shadow-sm">
+                        Enregistrer la configuration
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <section id="data-tables" class="content-section hidden space-y-6">
+            <div class="bg-white p-6 rounded shadow-sm border-t-4 border-blue-primary">
+                <h3 class="text-xl font-bold text-blue-dark mb-4">Explorateur de Base de Données</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-blue-light text-blue-dark">
+                                <th class="p-3 font-bold border-b">ID</th>
+                                <th class="p-3 font-bold border-b">Nom du Projet</th>
+                                <th class="p-3 font-bold border-b">Statut</th>
+                                <th class="p-3 font-bold border-b">Dernière Mise à Jour</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="hover:bg-gray-50 border-b">
+                                <td class="p-3 font-mono">#001</td>
+                                <td class="p-3 font-bold text-gray-800">CarburTrack</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-blue-light text-blue-primary text-xs font-bold rounded">Actif</span></td>
+                                <td class="p-3 text-gray-500 text-sm">2026-08-18</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 border-b">
+                                <td class="p-3 font-mono">#002</td>
+                                <td class="p-3 font-bold text-gray-800">InnovLink</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-blue-light text-blue-primary text-xs font-bold rounded">Synchronisé</span></td>
+                                <td class="p-3 text-gray-500 text-sm">2026-08-17</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        lucide.createIcons();
+        function showSection(id) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

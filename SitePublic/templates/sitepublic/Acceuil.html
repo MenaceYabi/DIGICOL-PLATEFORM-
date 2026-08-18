@@ -2,25 +2,19 @@
 
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
-
     <title>DigiCol - Accueil</title>
-
     <meta name="description"
           content="DigiCol - Communauté technologique dédiée à la formation, aux projets, au partage et à l'innovation.">
-
     <!-- Bootstrap Icons CDN -->
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     >
-    <link rel="stylesheet" href="css/output.css">
+    <link rel="stylesheet" href="{% static 'css/output.css'%}">
 
 </head>
 
@@ -139,7 +133,7 @@
             </a>
 
 
-            <a href="#"
+            <a href="{% url 'Adhesion' %}"
                class="px-4
                       py-2
                       text-sm
